@@ -3,14 +3,14 @@ namespace R10Analyzer;
 
 class GolfCLub implements GolfData {
 
-    private int $id;
-    private int $clubTypeId;
-    private float $shaftLength;
-    private string $flexTypeId;
-    private int $averageDistance;
-    private int $adviceDistance;
-    private bool $retired;
-    private bool $deleted;
+    private int $id = 0;
+    private int $clubTypeId = 0;
+    private float $shaftLength = 0.0;
+    private string $flexTypeId = '';
+    private int $averageDistance = 0;
+    private int $adviceDistance = 0;
+    private bool $retired = false;
+    private bool $deleted = false;
     private \DateTime $lastModifiedTime;
 
     private GolfClubType $type;
@@ -135,5 +135,15 @@ class GolfCLub implements GolfData {
     public function getLastModifiedTime(): \DateTime
     {
         return $this->lastModifiedTime;
+    }
+
+    /**
+     * Get the value of type
+     *
+     * @return GolfClubType
+     */
+    public function getType(): GolfClubType
+    {
+        return $this->type;
     }
 }

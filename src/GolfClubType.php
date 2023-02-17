@@ -3,13 +3,13 @@ namespace R10Analyzer;
 
 
 class GolfClubType implements GolfData {
-    private int $value;
-    private string $name;
-    private float $shaftLength;
-    private float  $loftAngle;
-    private float $lieAngle;
-    private string $displayRange;
-    private bool $valid;
+    private int $value = 0;
+    private string $name = '';
+    private float $shaftLength = 0.0;
+    private float  $loftAngle = 0.0;
+    private float $lieAngle = 0.0;
+    private string $displayRange = '';
+    private bool $valid = false;
 
     public function __construct(\stdClass $obj) {
         $this->value = $obj?->value;
