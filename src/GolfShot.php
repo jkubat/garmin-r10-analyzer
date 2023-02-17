@@ -3,30 +3,30 @@ namespace R10Analyzer;
 
 class GolfShot {
 
-    private string $simShotClientKey;
-    private string $simSessionClientKey;
-    private int $playerProfileId;
+    private string $simShotClientKey ='';
+    private string $simSessionClientKey ='';
+    private int $playerProfileId = 0;
     private \DateTime $shotTime;
-    private int $shotOrder;
-    private int $clubId;
-    private float $ballSpeed;
-    private float $horizontalLaunchAngle;
-    private float $clubHeadSpeed;
-    private float $clubPathAngle;
-    private float $backSwingTime;
-    private float $downSwingTime;
-    private float $attackAngle;
-    private float $clubFaceAngle;
-    private float $spinRate;
-    private float $spinAxis;
-    private float $smashFactor;
-    private float $swingTempo;
+    private int $shotOrder = 0;
+    private int $clubId = 0;
+    private float $ballSpeed = 0.0;
+    private float $horizontalLaunchAngle  = 0.0;
+    private float $clubHeadSpeed  = 0.0;
+    private float $clubPathAngle  = 0.0;
+    private float $backSwingTime  = 0.0;
+    private float $downSwingTime  = 0.0;
+    private float $attackAngle  = 0.0;
+    private float $clubFaceAngle  = 0.0;
+    private float $spinRate  = 0.0;
+    private float $spinAxis  = 0.0;
+    private float $smashFactor  = 0.0;
+    private float $swingTempo  = 0.0;
     private \DateTime $lastModifiedTime;
-    private string $spinCalculationType;
-    private string $ballType;
-    private float $temperature;
-    private float $humidity;
-    private float $airPressure;
+    private string $spinCalculationType = '';
+    private string $ballType  = '';
+    private float $temperature  = 0.0;
+    private float $humidity  = 0.0;
+    private float $airPressure  = 0.0;
 
     public function __construct(\stdClass $club) {
         $this->simShotClientKey = $club->simShotClientKey;
@@ -70,6 +70,10 @@ class GolfShot {
 
         if(isset($club->spinRate)) {
           $this->spinRate = (float)$club?->spinRate;
+        }
+
+        if(isset($club->spinCalculationType)) {
+            $this->spinCalculationType = $club->spinCalculationType;
         }
 
         if(isset($club->spinAxis)) {

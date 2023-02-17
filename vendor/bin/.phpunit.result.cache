@@ -1,0 +1,1 @@
+{"version":1,"defects":{"GolfShotTest::testCorrectAssert":8},"times":{"GolfClubTest::testCorrectAssert":0.007,"GolfClubTypeTest::testCorrectAssert":0.001,"GolfSessionSummaryTest::testCorrectAssert":0.001,"GolfShotTest::testCorrectAssert":0.001}}
