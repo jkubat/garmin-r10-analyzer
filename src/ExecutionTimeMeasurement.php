@@ -65,7 +65,7 @@ class ExecutionTimeMeasurement
      * @param   bool            $startImmediately   If true, the initial timestamp will be added without needing to start manually. NOTICE: this parameter is ignored if Callback is tested
      * @param   ?Closure        $callback           Callback used for execution time calculation. Tested Callback will immediately build the result
      */
-    public function __construct(string $message = null, bool $startImmediately = false, ?Closure $callback = null)
+    public function __construct(string $message = null, bool $startImmediately = false, ?\Closure $callback = null)
     {
         $_message = trim($message);
         $this->message = empty($_message) === true ? null : $_message;
@@ -151,7 +151,7 @@ class ExecutionTimeMeasurement
             // Append the timer message to the thrown exception, if any
             $message = "Tried to call finish() before starting this timer" . ($this->message != null ? " ({$this->message})" : "");
 
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         $this->hasFinished = true;

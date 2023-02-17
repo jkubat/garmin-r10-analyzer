@@ -3,7 +3,7 @@
         'name' => 'jkubat/r10_analyzer',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b8b3b589b1522bd2f7a187cbca7a99bed93cf6c0',
+        'reference' => 'c6dc499cbb54ac6eddf4b05c55ebf85c66e60771',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'jkubat/r10_analyzer' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b8b3b589b1522bd2f7a187cbca7a99bed93cf6c0',
+            'reference' => 'c6dc499cbb54ac6eddf4b05c55ebf85c66e60771',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -54,6 +54,15 @@
             'install_path' => __DIR__ . '/../phar-io/version',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'phpstan/phpstan' => array(
+            'pretty_version' => '1.9.18',
+            'version' => '1.9.18.0',
+            'reference' => 'f2d5cf71be91172a57c649770b73c20ebcffb0bf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpstan/phpstan',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'phpunit/php-code-coverage' => array(
             'pretty_version' => '10.0.0',

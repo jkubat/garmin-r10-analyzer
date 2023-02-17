@@ -21,7 +21,7 @@ class GolfDataFactory {
         $fileName = self::getFilePath($cfg, $type);
         
         if (!file_exists($fileName)) {
-            throw new Exception('file ' . $fileName . ' not found. Place analyze.php into downloaded dir from Garmin');
+            throw new \Exception('file ' . $fileName . ' not found. Place analyze.php into downloaded dir from Garmin');
         }
 
         //read file and get data

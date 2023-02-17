@@ -26,5 +26,16 @@
             "email": "jindrich.kubat@outlook.com"
         }
     ],
-    "minimum-stability": "stable"
+    "scripts": {
+        "test-stan": "phpstan analyze src tests",
+        "test-unit": "phpunit --colors=always tests",
+        "test": [
+            "@test-stan",
+            "@test-unit"
+        ]
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpstan/phpstan": "^1.9"
+    }
 }
