@@ -1,0 +1,30 @@
+{
+    "name": "jkubat/r10_analyzer",
+    "description": "Script generates data for exel from data export provider by garmin",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "R10Analyzer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config":{
+        "optimize-autoloader":true
+    },
+    "authors": [
+        {
+            "name": "Jindřich Kubát",
+            "email": "jindrich.kubat@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
