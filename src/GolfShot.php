@@ -10,6 +10,7 @@ class GolfShot {
     private int $shotOrder = 0;
     private int $clubId = 0;
     private float $ballSpeed = 0.0;
+    private float $verticalLaunchAngle = 0.0;
     private float $horizontalLaunchAngle  = 0.0;
     private float $clubHeadSpeed  = 0.0;
     private float $clubPathAngle  = 0.0;
@@ -20,7 +21,11 @@ class GolfShot {
     private float $spinRate  = 0.0;
     private float $spinAxis  = 0.0;
     private float $smashFactor  = 0.0;
+    private float $carryDistance = 0.0;
+    private float $totalDistance = 0.0;
+    private float $targetDistance = 0.0;
     private float $swingTempo  = 0.0;
+    private float $apexHeight = 0.0;
     private \DateTime $lastModifiedTime;
     private string $spinCalculationType = '';
     private string $ballType  = '';
@@ -39,6 +44,10 @@ class GolfShot {
             $this->ballSpeed = (float)$club?->ballSpeed;
         }
         $this->clubId = (int)$club?->clubId;
+
+        if(isset($club->verticalLaunchAngle)) {
+            $this->verticalLaunchAngle = (float)$club?->verticalLaunchAngle;
+        }
 
         if(isset($club->horizontalLaunchAngle)) {
             $this->horizontalLaunchAngle = (float)$club?->horizontalLaunchAngle;
@@ -64,6 +73,10 @@ class GolfShot {
             $this->attackAngle = (float)$club?->attackAngle;
         }
 
+        if(isset($club->apexHeight)) {
+            $this->apexHeight = (float)$club?->apexHeight;
+        }
+
         if(isset($club->clubFaceAngle)) {
             $this->clubFaceAngle = (float)$club?->clubFaceAngle;
         }
@@ -78,6 +91,18 @@ class GolfShot {
 
         if(isset($club->spinAxis)) {
             $this->spinAxis = (float)$club?->spinAxis;
+        }
+
+        if(isset($club->carryDistance)) {
+            $this->carryDistance = (float)$club?->carryDistance;
+        }
+
+        if(isset($club->totalDistance)) {
+            $this->totalDistance = (float)$club?->totalDistance;
+        }
+
+        if(isset($club->targetDistance)) {
+            $this->targetDistance = (float)$club?->targetDistance;
         }
 
         if(isset($club->smashFactor)) {
@@ -348,5 +373,55 @@ class GolfShot {
     public function getAirPressure(): float
     {
         return $this->airPressure;
+    }
+
+    /**
+     * Get the value of verticalLaunchAngle
+     *
+     * @return float
+     */
+    public function getVerticalLaunchAngle(): float
+    {
+        return $this->verticalLaunchAngle;
+    }
+
+    /**
+     * Get the value of carryDistance
+     *
+     * @return float
+     */
+    public function getCarryDistance(): float
+    {
+        return $this->carryDistance;
+    }
+
+    /**
+     * Get the value of totalDistance
+     *
+     * @return float
+     */
+    public function getTotalDistance(): float
+    {
+        return $this->totalDistance;
+    }
+
+    /**
+     * Get the value of apexHeight
+     *
+     * @return float
+     */
+    public function getApexHeight(): float
+    {
+        return $this->apexHeight;
+    }
+
+    /**
+     * Get the value of targetDistance
+     *
+     * @return float
+     */
+    public function getTargetDistance(): float
+    {
+        return $this->targetDistance;
     }
 }

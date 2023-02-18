@@ -32,7 +32,6 @@ class GolfDataFactory {
         if (isset($j->data) && count($j->data) > 0) {
             //load data from file
             foreach ($j->data as $mydata) {
-
                 switch ($type) {
                     case self::GOLF_CLUB: $rdata[] = GolfCLub::initialize($mydata);
                     break; 

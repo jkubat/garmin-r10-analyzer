@@ -44,28 +44,23 @@ try {
     $sheet = $spreadsheet->getActiveSheet();
     
     $timer = new ExecutionTimeMeasurement("Generate Excel file", true);
-    $i = 1;
-    $j = 1;
-    /** @var GolfClub[] An array of GolfClub objects. */ 
-    foreach($golfClubs as $golfClub) {
-        $sheet->setCellValue([$i++, $j], $golfClub->getId());
-        $sheet->setCellValue([$i++, $j], $golfClub->getClubTypeId());
-        $sheet->setCellValue([$i++, $j], $golfClub->getShaftLength());
-        $sheet->setCellValue([$i++, $j], $golfClub->getFlexTypeId());
-        $sheet->setCellValue([$i++, $j], $golfClub->getAverageDistance());
-        $sheet->setCellValue([$i++, $j], $golfClub->getAdviceDistance());
-        $sheet->setCellValue([$i++, $j], $golfClub->getRetired());
-        $sheet->setCellValue([$i++, $j], $golfClub->getDeleted());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getValue());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getName());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getShaftLength());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getLoftAngle());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getLieAngle());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getDisplayRange());
-        $sheet->setCellValue([$i++, $j], $golfClub->getType()->getValid());
-        $i=1;
-        $j++;
-    }
+    
+    //create sheet with golf clubs
+    $gfWriter = new GolfClubExcelWriter($golfClubs);
+    $gfWriter->createWorkSheet($sheet);
+    $sheet->setTitle('Golf CLubs');
+
+    //create sheet with golf summary
+    $sheet = $spreadsheet->createSheet(1);
+    $sheet->setTitle('Golf SIM shots');
+    $simShots = new SimSummaryExcelWriter($golfSIMSessions);
+    $simShots->createWorkSheet($sheet);
+
+    //create sheet with all golfshots
+    $sheet = $spreadsheet->createSheet(2);
+    $sheet->setTitle('Golf Shots');
+    $simShots = new SimGolfShotsExcelWriter($golfSIMSessions, $golfClubs);
+    $simShots->createWorkSheet($sheet);
 
     $writer = new Xlsx($spreadsheet);
     $writer->save('r10data.xlsx');

@@ -28,4 +28,24 @@ class GolfSimSession implements GolfData {
         return new GolfSimSession($data);
     }
     
+
+    /**
+     * Get the value of summary
+     *
+     * @return GolfSessionSummary
+     */
+    public function getSummary(): GolfSessionSummary
+    {
+        return $this->summary;
+    }
+
+    /**
+     * Get the value of shots
+     *
+     * @return array
+     */
+    public function getShots(): array
+    {
+        return $this->shots;
+    }
 }
