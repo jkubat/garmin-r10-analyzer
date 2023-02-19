@@ -32,5 +32,8 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Debug test
+      run: ls -la src/ 
+    
     - name: Run test suite
       run: composer run test
