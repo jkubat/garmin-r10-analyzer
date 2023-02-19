@@ -20,6 +20,9 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
+    - name: Composer dump autload
+      run: composer dump-autoload -o
+
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v3
