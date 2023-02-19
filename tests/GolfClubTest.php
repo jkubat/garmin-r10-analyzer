@@ -2,7 +2,7 @@
 require_once realpath("vendor/autoload.php");
 
 use PHPUnit\Framework\TestCase;
-use R10Analyzer\GolfCLub;
+use R10Analyzer\GolfClub;
 
 final class GolfClubTest extends TestCase
 {
@@ -20,7 +20,7 @@ final class GolfClubTest extends TestCase
             'lastModifiedTime' => '2018-12-04T22:54:09.000Z'
         ];
 
-        $gf = new GolfCLub($testData);
+        $gf = new GolfClub($testData);
         
         $this->assertEquals($testData->id, $gf->getId());
         $this->assertEquals($testData->clubTypeId, $gf->getClubTypeId());

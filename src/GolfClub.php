@@ -1,7 +1,7 @@
 <?php
 namespace R10Analyzer;
 
-class GolfCLub implements GolfData {
+class GolfClub implements GolfData {
 
     private int $id = 0;
     private int $clubTypeId = 0;
@@ -34,7 +34,7 @@ class GolfCLub implements GolfData {
     }
 
     public static function initialize(\stdClass $data) : GolfData {
-        return new GolfCLub($data);
+        return new GolfClub($data);
     }
 
    /** @var GolfCLubType[] An array of GolfCLubTypes objects. */

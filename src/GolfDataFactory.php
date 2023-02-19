@@ -33,7 +33,7 @@ class GolfDataFactory {
             //load data from file
             foreach ($j->data as $mydata) {
                 switch ($type) {
-                    case self::GOLF_CLUB: $rdata[] = GolfCLub::initialize($mydata);
+                    case self::GOLF_CLUB: $rdata[] = GolfClub::initialize($mydata);
                     break; 
                     
                     case self::GOLF_CLUB_TYPE: $rdata[] = GolfClubType::initialize($mydata);
