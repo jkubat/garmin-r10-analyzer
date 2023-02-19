@@ -2,7 +2,6 @@
 require_once realpath("vendor/autoload.php");
 
 use PHPUnit\Framework\TestCase;
-use R10Analyzer\GolfCLub;
 use R10Analyzer\GolfSessionSummary;
 
 final class GolfSessionSummaryTest extends TestCase
