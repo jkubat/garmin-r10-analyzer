@@ -26,12 +26,15 @@ class GolfShot {
     private float $targetDistance = 0.0;
     private float $swingTempo  = 0.0;
     private float $apexHeight = 0.0;
+    private float $totalDeviationDistance = 0.0;
     private \DateTime $lastModifiedTime;
     private string $spinCalculationType = '';
     private string $ballType  = '';
     private float $temperature  = 0.0;
     private float $humidity  = 0.0;
     private float $airPressure  = 0.0;
+
+    private bool $goodShot = true;
 
     public function __construct(\stdClass $club) {
         $this->simShotClientKey = $club->simShotClientKey;
@@ -75,6 +78,10 @@ class GolfShot {
 
         if(isset($club->apexHeight)) {
             $this->apexHeight = (float)$club?->apexHeight;
+        }
+
+        if(isset($club->totalDeviationDistance)) {
+            $this->totalDeviationDistance = (float)$club?->totalDeviationDistance;
         }
 
         if(isset($club->clubFaceAngle)) {
@@ -423,5 +430,39 @@ class GolfShot {
     public function getTargetDistance(): float
     {
         return $this->targetDistance;
+    }
+
+    /**
+     * Get the value of goodShot
+     *
+     * @return bool
+     */
+    public function getGoodShot(): bool
+    {
+        return $this->goodShot;
+    }
+
+    /**
+     * Set the value of goodShot
+     *
+     * @param bool $goodShot
+     *
+     * @return self
+     */
+    public function setGoodShot(bool $goodShot): self
+    {
+        $this->goodShot = $goodShot;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of totalDeviationDistance
+     *
+     * @return float
+     */
+    public function getTotalDeviationDistance(): float
+    {
+        return $this->totalDeviationDistance;
     }
 }

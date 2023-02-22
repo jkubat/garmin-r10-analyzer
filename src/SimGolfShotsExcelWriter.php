@@ -22,6 +22,7 @@ class SimGolfShotsExcelWriter {
         $i = 1;
         $j = 1;
         $sheet->setCellValue([$i++, $j], 'Client ID');
+        $sheet->setCellValue([$i++, $j], 'Session Name');
         $sheet->setCellValue([$i++, $j], 'Shot Order');
         $sheet->setCellValue([$i++, $j], 'Shot Time');
         $sheet->setCellValue([$i++, $j], 'Club');
@@ -42,11 +43,13 @@ class SimGolfShotsExcelWriter {
         $sheet->setCellValue([$i++, $j], 'Target Distance');   
         $sheet->setCellValue([$i++, $j], 'Smash Factor');   
         $sheet->setCellValue([$i++, $j], 'Apex Height');   
+        $sheet->setCellValue([$i++, $j], 'Total Deviation Distance'); 
         $sheet->setCellValue([$i++, $j], 'Spin Callculation Type');   
         $sheet->setCellValue([$i++, $j], 'Ball Type');   
         $sheet->setCellValue([$i++, $j], 'Temperature');   
         $sheet->setCellValue([$i++, $j], 'Humidity');   
-        $sheet->setCellValue([$i++, $j], 'Air Pressure');   
+        $sheet->setCellValue([$i++, $j], 'Air Pressure');
+        $sheet->setCellValue([$i++, $j], 'Good Shot');   
     }
 
     public function createWorkSheet(Worksheet $sheet) {
@@ -57,9 +60,11 @@ class SimGolfShotsExcelWriter {
         /** @var GolfSimSession[] An array of GolfSimSession objects. */ 
         foreach($this->shots as $golfShots) {   
                  
+            $sessionName = $golfShots->getSummary()->getStartTime()->format('Y-m-d H:i');
              /** @var GolfShot[] An array of GolfShot objects. */ 
             foreach($golfShots->getShots() as $sShot){
                 $sheet->setCellValue([$i++, $j], $golfShots->getSummary()->getClientKey());
+                $sheet->setCellValue([$i++, $j], $sessionName); 
                 $sheet->setCellValue([$i++, $j], $sShot->getShotOrder());
                 $sheet->setCellValue([$i++, $j], $sShot->getShotTime());
                 $sheet->setCellValue([$i++, $j], $this->clubs[$sShot->getClubId()]->getType()->getName());
@@ -80,12 +85,13 @@ class SimGolfShotsExcelWriter {
                 $sheet->setCellValue([$i++, $j], $sShot->getTargetDistance());
                 $sheet->setCellValue([$i++, $j], $sShot->getSmashFactor());
                 $sheet->setCellValue([$i++, $j], $sShot->getApexHeight());
+                $sheet->setCellValue([$i++, $j], $sShot->getTotalDeviationDistance());
                 $sheet->setCellValue([$i++, $j], $sShot->getSpinCalculationType());
                 $sheet->setCellValue([$i++, $j], $sShot->getBallType());
                 $sheet->setCellValue([$i++, $j], $sShot->getTemperature());
                 $sheet->setCellValue([$i++, $j], $sShot->getHumidity());
                 $sheet->setCellValue([$i++, $j], $sShot->getAirPressure());
-
+                $sheet->setCellValue([$i++, $j], $sShot->getGoodShot());
                 $i=1;
                 $j++;
             }

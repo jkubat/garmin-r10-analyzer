@@ -39,6 +39,15 @@ try {
     $golfSIMSessions = GolfDataFactory::load($cfg, GolfDataFactory::GOLF_SIM_SESSIONS);
     print $timer->getResult(); 
 
+    if($cfg['analyze_golf_shots'] == true) {
+        //analyze data
+         $timer = new ExecutionTimeMeasurement("Analyzing data", true);
+         $analyzer = new SimGolfShotAnalyzer($golfSIMSessions, $golfClubs, $cfg);
+         $golfSIMSessions = $analyzer->getAnalyzedData();
+         print $timer->getResult(); 
+
+    }
+    
     //export data into excel
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();

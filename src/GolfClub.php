@@ -18,8 +18,6 @@ class GolfClub implements GolfData {
     public function __construct(\stdClass $club) {
         $this->id = $club?->id;
         $this->clubTypeId = $club?->clubTypeId;
-        $this->shaftLength = $club?->shaftLength;
-        $this->flexTypeId = $club?->flexTypeId;
         $this->flexTypeId = $club?->flexTypeId;
         $this->shaftLength = $club?->shaftLength;
         $this->adviceDistance = $club?->adviceDistance;
