@@ -47,9 +47,9 @@ final class GolfShotTest extends TestCase
 
         $this->assertEquals($testData->shotOrder, $gf->getShotOrder());
         $this->assertEquals($testData->clubId, $gf->getClubId());
-        $this->assertEquals($testData->ballSpeed, $gf->getBallSpeed());
+        $this->assertEquals($testData->ballSpeed * GolfShot::MPH, $gf->getBallSpeed());
         $this->assertEquals($testData->horizontalLaunchAngle, $gf->getHorizontalLaunchAngle());
-        $this->assertEquals($testData->clubHeadSpeed, $gf->getClubHeadSpeed());
+        $this->assertEquals($testData->clubHeadSpeed * GolfShot::MPH, $gf->getClubHeadSpeed());
         $this->assertEquals($testData->clubPathAngle, $gf->getClubPathAngle());
         $this->assertEquals($testData->backSwingTime, $gf->getBackSwingTime());
         $this->assertEquals($testData->downSwingTime, $gf->getDownSwingTime());
