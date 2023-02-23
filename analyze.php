@@ -72,7 +72,7 @@ try {
     $simShots->createWorkSheet($sheet);
 
     $writer = new Xlsx($spreadsheet);
-    $writer->save('r10data.xlsx');
+    $writer->save(sprintf('exports/%s-r10data-%s.xlsx',date('Y-m-d'),substr(uniqid(),0,5)));
     print $timer->getResult(); 
     print "\nAll done!\n";
 

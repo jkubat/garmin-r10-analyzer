@@ -3,6 +3,9 @@ namespace R10Analyzer;
 
 class GolfShot {
 
+    //speed conversion from ms to mph
+    CONST MPH = 2.2369363;
+
     private string $simShotClientKey ='';
     private string $simSessionClientKey ='';
     private int $playerProfileId = 0;
@@ -44,7 +47,7 @@ class GolfShot {
         $this->shotOrder = (int)$club?->shotOrder;
 
         if(isset($club->ballSpeed)) {
-            $this->ballSpeed = (float)$club?->ballSpeed;
+            $this->ballSpeed = (float)$club?->ballSpeed * self::MPH;
         }
         $this->clubId = (int)$club?->clubId;
 
@@ -57,7 +60,7 @@ class GolfShot {
         }
 
         if(isset($club->clubHeadSpeed)) {
-            $this->clubHeadSpeed = (float)$club?->clubHeadSpeed;
+            $this->clubHeadSpeed = (float)$club?->clubHeadSpeed * self::MPH;
         }
 
         if(isset($club->clubPathAngle)) {
@@ -464,5 +467,35 @@ class GolfShot {
     public function getTotalDeviationDistance(): float
     {
         return $this->totalDeviationDistance;
+    }
+
+
+    /**
+     * Set the value of clubHeadSpeed
+     *
+     * @param float $clubHeadSpeed
+     *
+     * @return self
+     */
+    public function setClubHeadSpeed(float $clubHeadSpeed): self
+    {
+        $this->clubHeadSpeed = $clubHeadSpeed;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of ballSpeed
+     *
+     * @param float $ballSpeed
+     *
+     * @return self
+     */
+    public function setBallSpeed(float $ballSpeed): self
+    {
+        $this->ballSpeed = $ballSpeed;
+
+        return $this;
     }
 }

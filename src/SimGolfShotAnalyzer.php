@@ -3,7 +3,7 @@
 namespace R10Analyzer;
 
 class SimGolfShotAnalyzer {
-    
+
     private $simSessions;
 
     private array $clubs;
@@ -46,7 +46,6 @@ class SimGolfShotAnalyzer {
                         $sShot->setGoodShot(false);
                     }
                 }
-
            }
         }
 
