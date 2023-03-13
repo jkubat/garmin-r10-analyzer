@@ -41,5 +41,17 @@ php analyze cause some PHP errors Try to look to the vendor folder. There must b
 composer install composer dump-autoload -o
 You can also try to run tests: composer run tests
 
+### folders missing
+create folders "garmin_data" and "exports"
+
+### Windows Troubleshooting
+Windows is not natural environment for php. It works with some tweak, though.
+1. download php into folder: C:\php
+2. in php folder rename php.ini-development to php.ini
+3. open php.ini file and find line: extension=mbstring
+4. be sure it allowed (remove ; char at the line beginning)
+5. add php folder into your PATH ;https://www.forevolve.com/en/articles/2016/10/27/how-to-add-your-php-runtime-directory-to-your-windows-10-path-environment-variable/
+6. You should be able to run php analyze.php in folder with the application
+
 ## License
 The code is open-sourced software licensed under the MIT license.
