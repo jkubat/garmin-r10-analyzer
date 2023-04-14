@@ -25,6 +25,7 @@ class SimGolfShotsExcelWriter {
         $sheet->setCellValue([$i++, $j], 'Session Name');
         $sheet->setCellValue([$i++, $j], 'Shot Order');
         $sheet->setCellValue([$i++, $j], 'Shot Time');
+        $sheet->setCellValue([$i++, $j], 'Club Id');
         $sheet->setCellValue([$i++, $j], 'Club');
         $sheet->setCellValue([$i++, $j], 'Ball Speed');
         $sheet->setCellValue([$i++, $j], 'Vertical Launch Angle');   
@@ -50,6 +51,8 @@ class SimGolfShotsExcelWriter {
         $sheet->setCellValue([$i++, $j], 'Humidity');   
         $sheet->setCellValue([$i++, $j], 'Air Pressure');
         $sheet->setCellValue([$i++, $j], 'Good Shot');   
+        $sheet->setCellValue([$i++, $j], 'Club speed has value');   
+        $sheet->setCellValue([$i++, $j], 'Club path has value');   
     }
 
     public function createWorkSheet(Worksheet $sheet) {
@@ -67,6 +70,7 @@ class SimGolfShotsExcelWriter {
                 $sheet->setCellValue([$i++, $j], $sessionName); 
                 $sheet->setCellValue([$i++, $j], $sShot->getShotOrder());
                 $sheet->setCellValue([$i++, $j], $sShot->getShotTime());
+                $sheet->setCellValue([$i++, $j], $this->clubs[$sShot->getClubId()]->getType()->getValue());
                 $sheet->setCellValue([$i++, $j], $this->clubs[$sShot->getClubId()]->getType()->getName());
                 $sheet->setCellValue([$i++, $j], $sShot->getBallSpeed());
                 $sheet->setCellValue([$i++, $j], $sShot->getVerticalLaunchAngle());
@@ -92,6 +96,8 @@ class SimGolfShotsExcelWriter {
                 $sheet->setCellValue([$i++, $j], $sShot->getHumidity());
                 $sheet->setCellValue([$i++, $j], $sShot->getAirPressure());
                 $sheet->setCellValue([$i++, $j], $sShot->getGoodShot());
+                $sheet->setCellValue([$i++, $j], (bool)$sShot->getClubHeadSpeed());
+                $sheet->setCellValue([$i++, $j], (bool)$sShot->getClubPathAngle());
                 $i=1;
                 $j++;
             }
