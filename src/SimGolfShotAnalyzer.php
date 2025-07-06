@@ -32,7 +32,7 @@ class SimGolfShotAnalyzer {
                 $deviation_cfg = $club.'_max_deviation_distance';
 
                 if(isset($this->config[$carry_cfg]) && (float)$this->config[$carry_cfg] > 0) {
-                    if($sShot->getTotalDistance() < (float)$this->config[$carry_cfg]) {
+                    if($sShot->getCarryDistance() < (float)$this->config[$carry_cfg]) {
                         $sShot->setGoodShot(false);
                     }
                 }
