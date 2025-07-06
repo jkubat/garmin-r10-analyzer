@@ -44,7 +44,7 @@ class SimGolfShotsExcelWriter {
         $sheet->setCellValue([$i++, $j], 'Smash Factor');   
         $sheet->setCellValue([$i++, $j], 'Apex Height');   
         $sheet->setCellValue([$i++, $j], 'Total Deviation Distance'); 
-        $sheet->setCellValue([$i++, $j], 'Spin Callculation Type');   
+        $sheet->setCellValue([$i++, $j], 'Spin Calculation Type');
         $sheet->setCellValue([$i++, $j], 'Ball Type');   
         $sheet->setCellValue([$i++, $j], 'Temperature');   
         $sheet->setCellValue([$i++, $j], 'Humidity');   
