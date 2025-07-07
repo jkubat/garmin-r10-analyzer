@@ -5,7 +5,7 @@ class GolfSimSession implements GolfData {
 
     private GolfSessionSummary $summary;
 
-    private array $shots;
+    private array $shots = [];
 
     public function __construct(\stdClass $data) {
         $this->summary = new GolfSessionSummary($data->summary);

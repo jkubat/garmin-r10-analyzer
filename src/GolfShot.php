@@ -128,10 +128,6 @@ class GolfShot {
             $this->ballType = $club?->ballType;
         }
 
-        if(isset($club->ballType)) {
-            $this->ballType = $club?->ballType;
-        }
-
         if(isset($club->temperature)) {
             $this->temperature = (float)$club?->temperature;
         }
