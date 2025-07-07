@@ -6,6 +6,52 @@ use R10Analyzer\GolfShot;
 
 final class GolfShotTest extends TestCase
 {
+    public function testIncorrectAssert(): void
+    {
+        $testData = (object) [
+            'simShotClientKey' => "60AAC3CA-688F-4A39-B60F-FCFC5B0ED26C1",
+            'simSessionClientKey' => "3609A6FD-B7D1-43D7-8CA2-724EED8B992B2023-02-11",
+            'playerProfileId' => 72615533,
+            'shotTime' => "2023-02-11T13:26:17.000Z",
+            'shotOrder' => 1,
+            'clubId' => 46585714,
+            'ballSpeed' => 37.33,
+            'horizontalLaunchAngle' => 8.64,
+            'clubHeadSpeed' => 31.57,
+            'clubPathAngle' => -7.59,
+
+            'backSwingTime' => 1.585,
+            'downSwingTime' => 0.175,
+            'attackAngle' => 3.57,
+            'clubFaceAngle' => 11.68,
+            'spinRate' => 1298.35,
+            'spinAxis' => -30,
+            'smashFactor' => 1.18,
+            'swingTempo' => 9.1,
+            'lastModifiedTime' => "2023-02-11T14:40:45.000Z",
+            'spinCalculationType' => "RATIO",
+            'ballType' => "NORMAL",
+            'temperature' => 5,
+            'humidity' => 69,
+            'airPressure' => 100.14,
+        ];
+
+        $gf = new GolfShot($testData);
+
+        // Assert that the simShotClientKey is incorrect
+        $this->assertNotEquals("incorrect_key", $gf->getSimShotClientKey());
+
+        // Assert that the simSessionClientKey is incorrect
+        $this->assertNotEquals("incorrect_key", $gf->getSimSessionClientKey());
+
+        // Assert that the playerProfileId is incorrect
+        $this->assertNotEquals(12345678, $gf->getPlayerProfileId());
+
+        // Assert that the shotTime is incorrect
+        $this->assertNotEquals("2023-02-11T13:26:18.000Z", $gf->getShotTime());
+
+        // Add more incorrect assertions here...
+    }
     public function testCorrectAssert(): void
     {
         $testData = (object) [

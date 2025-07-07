@@ -2,3 +2,4 @@ garmin_data/
 r10data.xlsx
 exports/
 .DS_Store
+vendor/bin/.phpunit.result.cache
