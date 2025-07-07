@@ -65,7 +65,7 @@ class ExecutionTimeMeasurement
      * @param   bool            $startImmediately   If true, the initial timestamp will be added without needing to start manually. NOTICE: this parameter is ignored if Callback is tested
      * @param   ?Closure        $callback           Callback used for execution time calculation. Tested Callback will immediately build the result
      */
-    public function __construct(string $message = null, bool $startImmediately = false, ?\Closure $callback = null)
+    public function __construct(string $message, bool $startImmediately = false, ?\Closure $callback = null)
     {
         $_message = trim($message);
         $this->message = empty($_message) === true ? null : $_message;

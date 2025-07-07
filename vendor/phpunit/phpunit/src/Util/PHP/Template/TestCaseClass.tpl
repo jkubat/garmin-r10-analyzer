@@ -3,7 +3,6 @@ use PHPUnit\Event\Facade;
 use PHPUnit\Runner\CodeCoverage;
 use PHPUnit\TextUI\Configuration\Registry as ConfigurationRegistry;
 use PHPUnit\TextUI\Configuration\CodeCoverageFilterRegistry;
-use PHPUnit\TextUI\XmlConfiguration\Loader;
 use PHPUnit\TextUI\Configuration\PhpHandler;
 use PHPUnit\TestRunner\TestResult\PassedTests;
 
@@ -33,23 +32,26 @@ if ($composerAutoload) {
 
 function __phpunit_run_isolated_test()
 {
-    $dispatcher = Facade::initForIsolation(
+    $dispatcher = Facade::instance()->initForIsolation(
         PHPUnit\Event\Telemetry\HRTime::fromSecondsAndNanoseconds(
             {offsetSeconds},
             {offsetNanoseconds}
-        )
+        ),
+        {exportObjects},
     );
 
     require_once '{filename}';
 
     if ({collectCodeCoverageInformation}) {
-        CodeCoverage::instance()->init(ConfigurationRegistry::get(), CodeCoverageFilterRegistry::instance());
+        CodeCoverage::instance()->init(ConfigurationRegistry::get(), CodeCoverageFilterRegistry::instance(), true);
+        CodeCoverage::instance()->ignoreLines({linesToBeIgnored});
     }
 
     $test = new {className}('{name}');
+
     $test->setData('{dataName}', unserialize('{data}'));
     $test->setDependencyInput(unserialize('{dependencyInput}'));
-    $test->setInIsolation(TRUE);
+    $test->setInIsolation(true);
 
     ob_end_clean();
 
@@ -57,7 +59,7 @@ function __phpunit_run_isolated_test()
 
     $output = '';
 
-    if (!$test->hasExpectationOnOutput()) {
+    if (!$test->expectsOutput()) {
         $output = $test->output();
     }
 
@@ -76,15 +78,18 @@ function __phpunit_run_isolated_test()
         }
     }
 
-    print serialize(
-        [
-            'testResult'    => $test->result(),
-            'codeCoverage'  => {collectCodeCoverageInformation} ? CodeCoverage::instance() : null,
-            'numAssertions' => $test->numberOfAssertionsPerformed(),
-            'output'        => $output,
-            'events'        => $dispatcher->flush(),
-            'passedTests'   => PassedTests::instance()
-        ]
+    file_put_contents(
+        '{processResultFile}',
+        serialize(
+            [
+                'testResult'    => $test->result(),
+                'codeCoverage'  => {collectCodeCoverageInformation} ? CodeCoverage::instance()->codeCoverage() : null,
+                'numAssertions' => $test->numberOfAssertionsPerformed(),
+                'output'        => $output,
+                'events'        => $dispatcher->flush(),
+                'passedTests'   => PassedTests::instance()
+            ]
+        )
     );
 }
 
@@ -101,11 +106,11 @@ set_error_handler('__phpunit_error_handler');
 
 restore_error_handler();
 
+ConfigurationRegistry::loadFrom('{serializedConfiguration}');
+(new PhpHandler)->handle(ConfigurationRegistry::get()->php());
+
 if ('{bootstrap}' !== '') {
     require_once '{bootstrap}';
 }
-
-ConfigurationRegistry::loadFrom('{serializedConfiguration}');
-(new PhpHandler)->handle(ConfigurationRegistry::get()->php());
 
 __phpunit_run_isolated_test();
