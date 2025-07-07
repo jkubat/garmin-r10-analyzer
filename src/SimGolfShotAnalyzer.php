@@ -37,6 +37,7 @@ class SimGolfShotAnalyzer {
                     }
                 }
 
+    
                 if(isset($this->config[$deviation_cfg]) && (float)$this->config[$deviation_cfg] > 0) {
                     if($sShot->getTotalDeviationDistance() > (float)$this->config[$deviation_cfg]) {
                         $sShot->setGoodShot(false);

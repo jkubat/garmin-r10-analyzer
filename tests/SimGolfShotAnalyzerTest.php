@@ -46,6 +46,7 @@ final class SimGolfShotAnalyzerTest extends TestCase
             'shotOrder' => 1,
             'clubId' => 1,
             'totalDistance' => 130,
+            'carryDistance' => 130,
             'totalDeviationDistance' => 10,
             'lastModifiedTime' => '2023-05-01T00:00:01.000Z'
         ];
@@ -58,6 +59,7 @@ final class SimGolfShotAnalyzerTest extends TestCase
             'shotOrder' => 2,
             'clubId' => 1,
             'totalDistance' => 100,
+            'carryDistance' => 100,
             'totalDeviationDistance' => 5,
             'lastModifiedTime' => '2023-05-01T00:00:03.000Z'
         ];
@@ -70,6 +72,7 @@ final class SimGolfShotAnalyzerTest extends TestCase
             'shotOrder' => 3,
             'clubId' => 1,
             'totalDistance' => 130,
+            'carryDistance' => 130,
             'totalDeviationDistance' => -40,
             'lastModifiedTime' => '2023-05-01T00:00:05.000Z'
         ];
@@ -94,6 +97,7 @@ final class SimGolfShotAnalyzerTest extends TestCase
         ];
 
         $analyzer = new SimGolfShotAnalyzer([$session], [$club], $config);
+
         $result = $analyzer->getAnalyzedData();
         $shots = $result[0]->getShots();
 
